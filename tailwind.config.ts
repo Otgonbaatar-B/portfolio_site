@@ -8,6 +8,16 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      animation: {
+        "border-spin": "border-spin 7s linear infinite",
+      },
+      keyframes: {
+        "border-spin": {
+          "100%": {
+            transform: "rotate(-360deg)",
+          },
+        },
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
@@ -16,4 +26,5 @@ const config: Config = {
   },
   plugins: [],
 };
+
 export default config;
