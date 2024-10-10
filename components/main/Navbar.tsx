@@ -8,14 +8,14 @@ const Navbar = () => {
       <div className="w-full h-full flex flex-row items-center justify-between m-auto px-[10px]">
         <a
           href="#about-me"
-          className="h-auto w-auto flex flex-row items-center"
+          className="h-auto w-[45px] flex flex-row items-center"
         >
           <Image
             src="/image.png"
             alt="logo"
-            width={70}
+            width={80}
             height={50}
-            className="cursor-pointer hover:animate-slowspin"
+            className="cursor-pointer hover:animate-slowspin rounded-full"
           />
           <span className="font-bold ml-[10px] hidden md:block text-gray-300">
             Otgonbaatar
