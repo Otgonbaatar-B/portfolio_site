@@ -61,6 +61,7 @@ const HeroContent = () => {
           height={600}
           width={600}
         />
+        {/* <div className="home_img w-96 h-96"></div> */}
       </motion.div>
     </motion.div>
   );
