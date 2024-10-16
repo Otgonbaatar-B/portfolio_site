@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/MovingBorders";
 
 const Experience = () => {
   return (
-    <div className="flex flex-col m-auto w-max-[1284px] my-40 justify-center items-center">
+    <div className="flex flex-col m-auto w-full my-40 justify-center items-center">
       <h1 className="font-bold text-4xl md:text-5xl text-center text-white">
         My{" "}
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">

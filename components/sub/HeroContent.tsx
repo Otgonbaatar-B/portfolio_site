@@ -14,9 +14,9 @@ const HeroContent = () => {
     <motion.div
       initial="hidden"
       animate="visible"
-      className="flex flex-row items-center justify-center px-20 mt-40 w-full z-[20]"
+      className="md:flex items-center justify-center mt-40 w-full z-[20] flex-row gap-5 md:gap-0"
     >
-      <div className="h-full w-full flex flex-col gap-5 justify-center m-auto text-start">
+      <div className="h-full w-full flex flex-col gap-5 justify-center m-auto items-center md:items-start text-center md:text-start">
         <motion.div
           variants={slideInFromTop}
           className="Welcome-box py-[8px] px-1 border border-[#7042f88b] opacity-[0.9]"
@@ -46,10 +46,20 @@ const HeroContent = () => {
         </motion.p>
         <motion.a
           variants={slideInFromLeft(1)}
-          className="py-2 button-primary text-center text-white cursor-pointer rounded-lg max-w-[200px]"
+          className="py-2 button-primary text-center text-white cursor-pointer rounded-lg w-[200px]"
         >
           Learn more
         </motion.a>
+        {/* <button
+          type="submit"
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 border-5 border-yellow-400 p-4 rounded-full overflow-hidden bg-blue-500 hover:bg-yellow-400 transition-all duration-500 cursor-pointer"
+        >
+          <i className="fa fa-paper-plane-o fa-2x absolute top-3 left-8 text-white transition-all duration-500"></i>
+          <i className="fa fa-paper-plane-o fa-2x absolute top-20 left-8 text-gray-600 transition-all duration-500"></i>
+          <p className="text-white uppercase text-center font-bold text-xl ml-8 transition-all duration-500 hover:text-gray-600">
+            send
+          </p>
+        </button> */}
       </div>
       <motion.div
         variants={slideInFromRight(0.8)}
