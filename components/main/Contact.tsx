@@ -96,13 +96,18 @@ const Contact = () => {
       )
     ) {
       sendEmail();
-      (e.currentTarget as HTMLFormElement).reset(); // Type assertion to HTMLFormElement
+      (e.currentTarget as HTMLFormElement).reset();
     }
   };
 
   return (
-    <section className="contact">
-      <h2 className="text-4xl text-center mb-4">Contact Me!</h2>
+    <section className="flex flex-col contact gap-5">
+      <h1 className="font-bold text-4xl md:text-5xl text-center text-white">
+        Contact{" "}
+        <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
+          me
+        </span>
+      </h1>
 
       <form onSubmit={handleSubmit} className="w-full max-w-lg mx-auto">
         <div className="flex justify-between space-x-4 mb-6 text-gray-300 text-base">
@@ -139,17 +144,6 @@ const Contact = () => {
             </span>
           </div>
         </div>
-        {/* <div className="relative mb-6">
-          <FontAwesomeIcon
-            icon={faUser}
-            className="absolute left-3 top-3 text-gray-400"
-          />
-          <input
-            type="text"
-            placeholder="Username"
-            className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full focus:outline-none focus:border-gray-400"
-          />
-        </div> */}
         <div className="flex justify-between space-x-4 mb-6 text-gray-300">
           <div className="relative w-1/2">
             <FontAwesomeIcon
