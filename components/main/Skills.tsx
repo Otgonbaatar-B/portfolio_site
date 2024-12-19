@@ -1,5 +1,3 @@
-import Image from "next/image";
-
 const Skills = () => {
   return (
     <div className="flex flex-col m-auto w-full my-40 justify-center items-center gap-5">

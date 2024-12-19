@@ -1,6 +1,5 @@
 import React from "react";
 import HeroContent from "../sub/HeroContent";
-import Contact from "./Contact";
 
 const Hero = () => {
   return (
