@@ -37,7 +37,6 @@ const Navbar = () => {
         <div className="flex flex-row gap-5 cursor-pointer">
           {Socials.map((social) => (
             <div key={social.name} className="group">
-              {/* Image компонентыг контейнер дотор оруулж, групп hover эффект үүсгэх */}
               <Image
                 className="group-hover:brightness-125 transition duration-300"
                 src={social.src}
