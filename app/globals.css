@@ -89,3 +89,37 @@ html {
     border-radius: 60% 40% 30% 70%/60% 30% 70% 40%;
   }
 }
+
+/* Customize Popup */
+.popup-class {
+  border-radius: 15px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  font-family: "Arial", sans-serif;
+  background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
+}
+
+/* Customize Title */
+.title-class {
+  font-size: 24px;
+  font-weight: bold;
+  color: #8b5cf6;
+  text-align: center;
+}
+
+/* Customize Confirm Button */
+.confirm-button-class {
+  background-color: #8b5cf6;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+/* Button hover effect */
+.confirm-button-class:hover {
+  background-color: #7a4dcd;
+  cursor: pointer;
+}
