@@ -1,3 +1,5 @@
+import FloatingChatBot from "@/components/ChatBot";
+import ChatBot from "@/components/ChatBot";
 import Cursor from "@/components/Cursor";
 import Contact from "@/components/main/Contact";
 import Experience from "@/components/main/Experience";
@@ -18,9 +20,11 @@ export default function Home() {
           <Experience />
           <Skills />
           <Contact />
+          {/* <ChatBot /> */}
           {/* <SocialIcons /> */}
         </div>
       </main>
+      <FloatingChatBot />
     </>
   );
 }
