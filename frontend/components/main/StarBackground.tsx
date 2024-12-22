@@ -47,9 +47,21 @@ const StarBackground = () => {
   );
 };
 
-const StarsCanvas = () => (
-  <div className="w-full h-[auto] fixed inset-0 z-0">
+interface StarsCanvasProps {
+  style?: React.CSSProperties; // style пропсыг нэмнэ
+}
+
+const StarsCanvas: React.FC<StarsCanvasProps> = ({ style }) => (
+  <div className="w-full h-[auto] fixed inset-0 z-[-1]">
     <Canvas
+      style={{
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        ...style, // Prop-оор ирсэн style-г ашиглах
+      }}
       camera={{ position: [0, 0, 1] }}
       // Add performance optimizations
       dpr={[1, 2]} // Limit pixel ratio

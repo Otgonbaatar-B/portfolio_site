@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image"; // Import Next.js Image component
-import { workExperience } from "@/components/constants/index";
-import { Button } from "@/components/ui/MovingBorders";
+import { workExperience } from "../constants";
+import { Button } from "../ui/MovingBorders";
 
 const Experience = () => {
   return (
