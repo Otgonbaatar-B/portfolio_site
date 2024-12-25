@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Suspense, useRef, useState } from "react";
+import React, { Suspense, useRef, useState, useMemo } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
 import * as random from "maath/random";
@@ -9,24 +9,27 @@ import * as THREE from "three";
 const StarBackground = () => {
   const ref = useRef<THREE.Points>(null);
 
-  // Generate points only once and memoize
-  const [sphere] = useState(
-    () =>
-      random.inSphere(new Float32Array(5000), { radius: 1.2 }) as Float32Array
-  );
+  // Generate points using useMemo to ensure they're only created once
+  const sphere = useMemo(() => {
+    const points = new Float32Array(5000 * 3);
+    // Explicitly cast the return value to Float32Array
+    return new Float32Array(random.inSphere(points, { radius: 1.2 }));
+  }, []);
 
-  // Optimize rotation calculation
+  // Use refs for rotation values to persist between renders
   const rotationX = useRef(0);
   const rotationY = useRef(0);
 
   useFrame((state, delta) => {
-    if (ref.current) {
-      rotationX.current -= delta / 10;
-      rotationY.current -= delta / 15;
+    if (!ref.current) return;
 
-      ref.current.rotation.x = rotationX.current;
-      ref.current.rotation.y = rotationY.current;
-    }
+    // Update rotation values
+    rotationX.current -= delta / 10;
+    rotationY.current -= delta / 15;
+
+    // Apply rotation
+    ref.current.rotation.x = rotationX.current;
+    ref.current.rotation.y = rotationY.current;
   });
 
   return (
@@ -38,7 +41,6 @@ const StarBackground = () => {
           size={0.002}
           sizeAttenuation={true}
           depthWrite={false}
-          // Add performance optimizations
           alphaTest={0.5}
           alphaToCoverage={true}
         />
@@ -48,30 +50,38 @@ const StarBackground = () => {
 };
 
 interface StarsCanvasProps {
-  style?: React.CSSProperties; // style пропсыг нэмнэ
+  style?: React.CSSProperties;
 }
 
-const StarsCanvas: React.FC<StarsCanvasProps> = ({ style }) => (
-  <div className="w-full h-[auto] fixed inset-0 z-[-1]">
-    <Canvas
-      style={{
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        ...style, // Prop-оор ирсэн style-г ашиглах
-      }}
-      camera={{ position: [0, 0, 1] }}
-      // Add performance optimizations
-      dpr={[1, 2]} // Limit pixel ratio
-      performance={{ min: 0.5 }} // Allow frame rate to drop for better performance
-    >
-      <Suspense fallback={null}>
-        <StarBackground />
-      </Suspense>
-    </Canvas>
-  </div>
-);
+const StarsCanvas: React.FC<StarsCanvasProps> = ({ style }) => {
+  // Use error boundary here
+  const [hasError, setHasError] = React.useState(false);
+
+  if (hasError) {
+    return <div className="w-full h-full fixed inset-0 bg-black" />;
+  }
+
+  return (
+    <div className="w-full h-auto fixed inset-0 z-[-1]">
+      <Canvas
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          ...style,
+        }}
+        camera={{ position: [0, 0, 1] }}
+        dpr={[1, 2]}
+        performance={{ min: 0.5 }}
+      >
+        <Suspense fallback={null}>
+          <StarBackground />
+        </Suspense>
+      </Canvas>
+    </div>
+  );
+};
 
 export default StarsCanvas;

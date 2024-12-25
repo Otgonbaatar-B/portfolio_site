@@ -33,13 +33,16 @@ export default function FloatingChatBot() {
       };
       setMessages((prev) => [...prev, tempUserMessage]);
 
-      const response = await fetch(`${process.env.DATABASE_URL}/api/chat`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ message: userMessage }),
-      });
+      const response = await fetch(
+        `https://portfolio-site-nk6t.onrender.com/api/chat`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ message: userMessage }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Network response was not ok");

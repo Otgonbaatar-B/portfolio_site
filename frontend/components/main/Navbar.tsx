@@ -76,7 +76,7 @@ const Navbar = () => {
         initial={{ y: -100 }}
         animate={{ y: visible ? 0 : -100 }}
         transition={{ duration: 0.3 }}
-        className="fixed top-0 left-0 right-0 z-50 px-5 md:px-10"
+        className="fixed top-0 left-0 right-0 z-40 px-5 md:px-10"
       >
         <div className="max-w-7xl mx-auto">
           <div className="backdrop-blur-md bg-[#0300147c] border border-[#2A0E61]/50 rounded-2xl mt-4 shadow-lg shadow-purple-500/20">
@@ -180,7 +180,7 @@ const Navbar = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40 mt-6"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             <motion.div

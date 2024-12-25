@@ -1,8 +1,10 @@
+"use client";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import StarsCanvas from "@/components/main/StarBackground";
 import Navbar from "@/components/main/Navbar";
+import LoadingScreen from "@/components/LoadingScreen";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -15,10 +17,10 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-export const metadata: Metadata = {
-  title: "Otgonbaatar Portfolio",
-  description: "This is my portfolio",
-};
+// export const metadata: Metadata = {
+//   title: "Otgonbaatar Portfolio",
+//   description: "This is my portfolio",
+// };
 
 export default function RootLayout({
   children,
@@ -30,6 +32,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#030014] overflow-y-scroll overflow-x-hidden`}
       >
+        <LoadingScreen />
         <StarsCanvas style={{ zIndex: -1 }} />
         <Navbar />
         {children}
