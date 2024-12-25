@@ -284,7 +284,7 @@ export default function FloatingChatBot() {
                 <div className="flex items-center space-x-2">
                   <Bot className="w-6 h-6 text-white" />
                   <h2 className="text-xl font-bold text-white">
-                    Otgonbaatar's ChatBot
+                    Otgonbaatar ChatBot
                   </h2>
                 </div>
                 <div className="flex items-center space-x-2">

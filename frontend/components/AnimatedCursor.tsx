@@ -15,8 +15,6 @@ const AnimatedCursor: React.FC<AnimatedCursorProps> = ({
   outerAlpha = 0.4,
   innerSize = 8,
   outerSize = 8,
-  outerScale = 5,
-  innerScale = 0.7,
 }) => {
   // State болон рефүүд
   const cursorOuterRef = useRef<HTMLDivElement>(null);
@@ -24,7 +22,6 @@ const AnimatedCursor: React.FC<AnimatedCursorProps> = ({
   const requestRef = useRef<number>();
   const [coords, setCoords] = useState({ x: 0, y: 0 });
   const [isVisible, setIsVisible] = useState(true);
-  const [isActive, setIsActive] = useState(false);
 
   const animateOuterCursor = useCallback(() => {
     if (cursorOuterRef.current) {
