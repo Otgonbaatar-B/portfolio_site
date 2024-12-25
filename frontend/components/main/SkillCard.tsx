@@ -33,6 +33,8 @@ const SkillCard: React.FC<SkillCardProps> = ({ title, icon: Icon, items }) => {
           >
             <Image
               src={`/api/placeholder/48/48`} // Replace with actual logo URLs
+              width={48} // Өргөн
+              height={48} // Өндөр
               alt={item}
               className="w-12 h-12 object-contain grayscale hover:grayscale-0 transition-all"
             />
