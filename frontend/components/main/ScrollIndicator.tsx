@@ -9,7 +9,6 @@ const ScrollProgressBar = () => {
   const percentage = useTransform(scrollYProgress, (value) =>
     Math.round(value * 100)
   );
-  console.log(isVisible);
 
   useEffect(() => {
     const handleScroll = () => {
