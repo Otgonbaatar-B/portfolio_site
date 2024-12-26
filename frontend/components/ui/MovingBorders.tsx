@@ -31,7 +31,6 @@ export function Button({
   className,
   ...otherProps
 }: ButtonProps) {
-  // Calculate derived values once
   const innerBorderRadius = `calc(${borderRadius} * 0.96)`;
 
   return (
@@ -42,7 +41,7 @@ export function Button({
       )}
       style={{
         borderRadius,
-        willChange: "transform", // Optimize for animation
+        willChange: "transform",
       }}
       {...otherProps}
     >
@@ -67,7 +66,7 @@ export function Button({
         )}
         style={{
           borderRadius: innerBorderRadius,
-          willChange: "transform", // Optimize for animation
+          willChange: "transform",
         }}
       >
         {children}
@@ -95,7 +94,6 @@ export const MovingBorder = ({
   const progress = useMotionValue<number>(0);
   const lastTime = useRef(0);
 
-  // Optimize animation frame calculation
   const updateProgress = useCallback(
     (time: number) => {
       const length = pathRef.current?.getTotalLength();
@@ -151,7 +149,7 @@ export const MovingBorder = ({
           left: 0,
           display: "inline-block",
           transform,
-          willChange: "transform", // Optimize for animation
+          willChange: "transform",
         }}
       >
         {children}

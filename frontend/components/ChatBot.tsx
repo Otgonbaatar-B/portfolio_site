@@ -74,8 +74,7 @@ export default function FloatingChatBot() {
 
   return (
     <>
-      {/* Fixed Chat Button */}
-      <div className="fixed bottom-4 right-4 z-50">
+      <div className="fixed bottom-4 right-2 z-50">
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="bg-blue-500 hover:bg-blue-600 text-white rounded-full p-4 shadow-lg transition-all duration-200 flex items-center justify-center"
@@ -96,7 +95,7 @@ export default function FloatingChatBot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-20 right-4 z-40 w-full max-w-sm"
+            className="fixed bottom-20 right-2 z-40 w-full pl-4 max-w-sm"
           >
             <div className="flex flex-col h-[500px] bg-gradient-to-b from-gray-900 to-gray-800 rounded-xl shadow-2xl border border-gray-700">
               {/* Header */}

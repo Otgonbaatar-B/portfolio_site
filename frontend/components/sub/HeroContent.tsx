@@ -51,16 +51,6 @@ const HeroContent = () => {
         >
           Learn more
         </motion.a>
-        {/* <button
-          type="submit"
-          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 border-5 border-yellow-400 p-4 rounded-full overflow-hidden bg-blue-500 hover:bg-yellow-400 transition-all duration-500 cursor-pointer"
-        >
-          <i className="fa fa-paper-plane-o fa-2x absolute top-3 left-8 text-white transition-all duration-500"></i>
-          <i className="fa fa-paper-plane-o fa-2x absolute top-20 left-8 text-gray-600 transition-all duration-500"></i>
-          <p className="text-white uppercase text-center font-bold text-xl ml-8 transition-all duration-500 hover:text-gray-600">
-            send
-          </p>
-        </button> */}
       </div>
       <motion.div
         variants={slideInFromRight(0.8)}
@@ -72,7 +62,6 @@ const HeroContent = () => {
           height={600}
           width={600}
         />
-        {/* <div className="home_img w-96 h-96"></div> */}
       </motion.div>
     </motion.div>
   );

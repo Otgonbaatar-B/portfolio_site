@@ -11,6 +11,8 @@ import {
   faEnvelopeOpenText,
   faFileText,
 } from "@fortawesome/free-solid-svg-icons";
+import SectionTitle from "../sub/SectionTitle";
+import { ContactIcon, Send, SendHorizonal } from "lucide-react";
 
 const Contact = () => {
   const fullNameRef = useRef<HTMLInputElement>(null);
@@ -20,44 +22,43 @@ const Contact = () => {
   const messageRef = useRef<HTMLTextAreaElement>(null);
 
   const sendEmail = () => {
-    // Form data object
     const templateParams = {
       from_name: fullNameRef.current?.value,
       from_email: emailRef.current?.value,
       phone: phoneRef.current?.value,
       subject: subjectRef.current?.value,
       message: messageRef.current?.value,
-      to_email: emailRef.current?.value, // Хүлээн авагчийн email
+      to_email: emailRef.current?.value,
     };
 
     emailjs
       .send(
-        "service_egq09oa", // Service ID
-        "template_g2y4o5f", // Template ID
+        "service_egq09oa",
+        "template_g2y4o5f",
         templateParams,
-        "JF2Aqv872jGhJvOfj" // Public Key
+        "JF2Aqv872jGhJvOfj"
       )
       .then((response) => {
         if (response.status === 200) {
           Swal.fire({
             title: "Success!",
-            text: "Message sent successfully!",
+            text: "Email sent successfully!",
             icon: "success",
-            background: "#121212", // Dark background color
-            color: "#fff", // White text color
-            confirmButtonColor: "#8B5CF6", // Confirm button color
-            confirmButtonText: "Great!", // Custom confirm button text
+            background: "#121212",
+            color: "#fff",
+            confirmButtonColor: "#8B5CF6",
+            confirmButtonText: "Great!",
             showClass: {
-              popup: "animate__animated animate__fadeIn", // Animation for popup when shown
+              popup: "animate__animated animate__fadeIn",
             },
             hideClass: {
-              popup: "animate__animated animate__fadeOut", // Animation for popup when hidden
+              popup: "animate__animated animate__fadeOut",
             },
-            buttonsStyling: false, // Disable SweetAlert2's default button styling
+            buttonsStyling: false,
             customClass: {
-              popup: "popup-class", // Custom class for the popup
-              title: "title-class", // Custom class for the title
-              confirmButton: "confirm-button-class", // Custom class for the confirm button
+              popup: "popup-class",
+              title: "title-class",
+              confirmButton: "confirm-button-class",
             },
           });
         }
@@ -148,9 +149,9 @@ const Contact = () => {
     <motion.div
       initial="hidden"
       animate="visible"
-      className="md:flex items-center justify-center mt-40 w-full z-[20] flex-row gap-5 md:gap-0"
+      className="md:flex items-center justify-center w-full z-[20] flex-row gap-5 md:gap-0"
     >
-      <section className="min-h-screen flex flex-col items-center justify-center py-12 px-4 from-gray-900 to-black">
+      <section className="flex flex-col items-center justify-center py-12 from-gray-900 to-black">
         <motion.div
           initial="hidden"
           animate="visible"
@@ -161,16 +162,13 @@ const Contact = () => {
             variants={itemVariants}
             className="font-bold text-5xl md:text-6xl text-center mb-12"
           >
-            <span className="text-white">Get in </span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500">
-              Touch
-            </span>
+            <SectionTitle title="Contact" icon={<ContactIcon />} />
           </motion.h1>
 
           <motion.form
             variants={containerVariants}
             onSubmit={handleSubmit}
-            className="w-full max-w-2xl mx-auto backdrop-blur-lg bg-white/5 p-8 rounded-2xl shadow-2xl"
+            className="w-full max-w-2xl mx-auto bg-transparent  rounded-2xl shadow-2xl"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               <motion.div variants={itemVariants} className="relative group">
@@ -183,7 +181,7 @@ const Contact = () => {
                   ref={fullNameRef}
                   placeholder="Full Name"
                   autoComplete="off"
-                  className="w-full pl-12 pr-4 py-4 bg-transparent border-2 border-gray-700 rounded-xl text-gray-200 placeholder-gray-500 focus:border-purple-500 focus:outline-none transition-all duration-300 focus:shadow-[0_0_20px_rgba(139,92,246,0.3)]"
+                  className="w-full pl-12 pr-4 py-4 bg-transparent border border-[#2A0E61] shadow-lg shadow-[#7042f861] rounded-xl text-gray-200 placeholder-gray-500 focus:border-purple-500 focus:outline-none transition-all duration-300 focus:shadow-[0_0_20px_rgba(139,92,246,0.3)]"
                 />
                 <span className="absolute -bottom-6 left-0 text-red-400 text-sm hidden">
                   Full Name cannot be empty
@@ -200,7 +198,7 @@ const Contact = () => {
                   ref={emailRef}
                   placeholder="Email Address"
                   autoComplete="off"
-                  className="w-full pl-12 pr-4 py-4 bg-transparent border-2 border-gray-700 rounded-xl text-gray-200 placeholder-gray-500 focus:border-purple-500 focus:outline-none transition-all duration-300 focus:shadow-[0_0_20px_rgba(139,92,246,0.3)]"
+                  className="w-full pl-12 pr-4 py-4 bg-transparent border border-[#2A0E61] shadow-lg shadow-[#7042f861] rounded-xl text-gray-200 placeholder-gray-500 focus:border-purple-500 focus:outline-none transition-all duration-300 focus:shadow-[0_0_20px_rgba(139,92,246,0.3)]"
                 />
                 <span className="absolute -bottom-6 left-0 text-red-400 text-sm hidden">
                   Email Address cannot be empty
@@ -217,7 +215,7 @@ const Contact = () => {
                   ref={phoneRef}
                   placeholder="Phone Number"
                   autoComplete="off"
-                  className="w-full pl-12 pr-4 py-4 bg-transparent border-2 border-gray-700 rounded-xl text-gray-200 placeholder-gray-500 focus:border-purple-500 focus:outline-none transition-all duration-300 focus:shadow-[0_0_20px_rgba(139,92,246,0.3)]"
+                  className="w-full pl-12 pr-4 py-4 bg-transparent border border-[#2A0E61] shadow-lg shadow-[#7042f861] rounded-xl text-gray-200 placeholder-gray-500 focus:border-purple-500 focus:outline-none transition-all duration-300 focus:shadow-[0_0_20px_rgba(139,92,246,0.3)]"
                 />
                 <span className="absolute -bottom-6 left-0 text-red-400 text-sm hidden">
                   Phone Number cannot be empty
@@ -234,7 +232,7 @@ const Contact = () => {
                   ref={subjectRef}
                   placeholder="Subject"
                   autoComplete="off"
-                  className="w-full pl-12 pr-4 py-4 bg-transparent border-2 border-gray-700 rounded-xl text-gray-200 placeholder-gray-500 focus:border-purple-500 focus:outline-none transition-all duration-300 focus:shadow-[0_0_20px_rgba(139,92,246,0.3)]"
+                  className="w-full pl-12 pr-4 py-4 bg-transparent border border-[#2A0E61] shadow-lg shadow-[#7042f861] rounded-xl text-gray-200 placeholder-gray-500 focus:border-purple-500 focus:outline-none transition-all duration-300 focus:shadow-[0_0_20px_rgba(139,92,246,0.3)]"
                 />
                 <span className="absolute -bottom-6 left-0 text-red-400 text-sm hidden">
                   Subject cannot be empty
@@ -251,7 +249,7 @@ const Contact = () => {
                 ref={messageRef}
                 placeholder="Your Message"
                 rows={5}
-                className="w-full pl-12 pr-4 py-4 bg-transparent border-2 border-gray-700 rounded-xl text-gray-200 placeholder-gray-500 focus:border-purple-500 focus:outline-none transition-all duration-300 focus:shadow-[0_0_20px_rgba(139,92,246,0.3)] resize-none"
+                className="w-full pl-12 pr-4 py-4 bg-transparent border border-[#2A0E61] shadow-lg shadow-[#7042f861] rounded-xl text-gray-200 placeholder-gray-500 focus:border-purple-500 focus:outline-none transition-all duration-300 focus:shadow-[0_0_20px_rgba(139,92,246,0.3)] resize-none"
               />
               <span className="absolute -bottom-6 left-0 text-red-400 text-sm hidden">
                 Message cannot be empty
@@ -263,9 +261,22 @@ const Contact = () => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               type="submit"
-              className="w-full py-4 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 text-white font-semibold text-lg rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/25"
+              className="flex items-center justify-center gap-4 w-full py-4 bg-transparent border border-[#2A0E61] shadow-lg shadow-[#7042f861] text-white font-semibold text-lg rounded-xl transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/25"
             >
               Send Message
+              <motion.div
+                animate={{
+                  rotate: [0, 5, -5, 0],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="w-6 h-6 text-[#b49bff]"
+              >
+                <SendHorizonal />
+              </motion.div>
             </motion.button>
           </motion.form>
         </motion.div>

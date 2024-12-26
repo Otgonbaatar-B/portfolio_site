@@ -1,23 +1,22 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Code2, Database, Wrench } from "lucide-react";
+import { Code2, Code2Icon, Database, Wrench } from "lucide-react";
 import SkillCard from "./SkillCard";
+import SectionTitle from "../sub/SectionTitle";
 
 const Skills = () => {
   const skillsData = [
     {
-      title: "Programming Languages",
+      title: "Programming Languages & Deploymend Tools",
       icon: Code2,
       items: [
         "JavaScript",
         "TypeScript",
-        "Python",
-        "Java",
-        "C++",
-        "PHP",
-        "Ruby",
-        "Swift",
-        "Go",
+        "C#",
+        "Git",
+        "Render",
+        "Vercel",
+        "Cloudflare",
       ],
     },
     {
@@ -26,13 +25,12 @@ const Skills = () => {
       items: [
         "React",
         "Next.js",
-        "Vue",
-        "Angular",
+        "Tailwind CSS",
+        "Daisy UI",
         "Node.js",
-        "Django",
-        "Laravel",
-        "Docker",
-        "Kubernetes",
+        "Material UI",
+        ".NET",
+        "DevExpress",
       ],
     },
     {
@@ -42,7 +40,7 @@ const Skills = () => {
         "MongoDB",
         "PostgreSQL",
         "MySQL",
-        "Redis",
+        "Express JS",
         "GraphQL",
         "REST",
         "Firebase",
@@ -51,17 +49,16 @@ const Skills = () => {
       ],
     },
   ];
+
   return (
-    <div className="flex flex-col m-auto w-full my-20 justify-center items-center gap-8 px-4">
-      <motion.h1
+    <div className="flex flex-col m-auto w-full justify-center items-center gap-8">
+      <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="font-bold text-4xl md:text-5xl text-center mb-8"
+        className="w-full text-center"
       >
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500 animate-gradient">
-          Technical Skills
-        </span>
-      </motion.h1>
+        <SectionTitle title="Skills" icon={<Code2Icon />} />
+      </motion.div>
       <div className="grid md:grid-cols-3 gap-8 w-full max-w-7xl">
         {skillsData.map((skill, index) => (
           <SkillCard
@@ -75,4 +72,5 @@ const Skills = () => {
     </div>
   );
 };
+
 export default Skills;

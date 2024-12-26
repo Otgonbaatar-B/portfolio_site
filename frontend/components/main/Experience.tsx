@@ -1,19 +1,16 @@
 import React from "react";
-import Image from "next/image"; // Import Next.js Image component
+import Image from "next/image";
 import { workExperience } from "../constants";
 import { Button } from "../ui/MovingBorders";
+import SectionTitle from "../sub/SectionTitle";
+import { BrainCircuitIcon } from "lucide-react";
 
 const Experience = () => {
   return (
-    <div className="flex flex-col m-auto w-full my-40 justify-center items-center">
-      <h1 className="font-bold text-4xl md:text-5xl text-center text-white">
-        My{" "}
-        <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
-          work experience
-        </span>
-      </h1>
+    <div className="flex flex-col m-auto w-full justify-center items-center">
+      <SectionTitle title="Experience" icon={<BrainCircuitIcon />} />
 
-      <div className="w-full mt-12 grid lg:grid-cols-4 grid-cols-1 gap-10">
+      <div className="max-w-[1280px] mt-12 grid lg:grid-cols-4 grid-cols-1 gap-10">
         {workExperience.map((card) => (
           <Button
             key={card.id}
@@ -29,11 +26,11 @@ const Experience = () => {
           >
             <div className="flex lg:flex-row flex-col lg:items-center p-3 py-6 md:p-5 lg:p-10 gap-2">
               <Image
-                src={card.thumbnail} // Use Next.js Image component
-                alt={card.title} // Use card.title for better alt text
+                src={card.thumbnail}
+                alt={card.title}
                 className="lg:w-32 md:w-20 w-16"
-                width={128} // Specify width (appropriate size)
-                height={128} // Specify height (appropriate size)
+                width={128}
+                height={128}
               />
               <div className="lg:ms-5">
                 <h1 className="text-start text-xl md:text-2xl font-bold">

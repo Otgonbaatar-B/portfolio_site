@@ -6,6 +6,7 @@ import Skills from "@/components/main/Skills";
 import FloatingChatBot from "@/components/ChatBot";
 import Contact from "@/components/main/Contact";
 import ScrollProgressBar from "@/components/main/ScrollIndicator";
+import ProjectsSection from "@/components/main/Project";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
           <Hero />
           <Experience />
           <Skills />
+          <ProjectsSection />
           <Contact />
         </div>
       </main>

@@ -16,7 +16,6 @@ const AnimatedCursor: React.FC<AnimatedCursorProps> = ({
   innerSize = 8,
   outerSize = 8,
 }) => {
-  // State болон рефүүд
   const cursorOuterRef = useRef<HTMLDivElement>(null);
   const cursorInnerRef = useRef<HTMLDivElement>(null);
   const requestRef = useRef<number>();
