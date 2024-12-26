@@ -15,13 +15,20 @@ const ScrollProgressBar = () => {
   const glowOpacity = useTransform(
     smoothProgress,
     [0, 0.5, 1],
-    [0.3, 0.8, 0.3] // Increased middle opacity for better visibility
+    [0.3, 0.8, 0.3]
   );
 
   const barWidth = useTransform(
     smoothProgress,
     [0, 0.5, 1],
-    ["3px", "4px", "3px"] // Increased width for better visibility
+    ["3px", "4px", "3px"]
+  );
+
+  // Always declare useTransform hooks unconditionally
+  const indicatorPosition = useTransform(
+    smoothProgress,
+    [0, 1],
+    ["0%", "100%"]
   );
 
   useEffect(() => {
@@ -45,25 +52,20 @@ const ScrollProgressBar = () => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <motion.div
-        className="relative h-52 flex justify-center items-center" // Changed to justify-center
+        className="relative h-52 flex justify-center items-center"
         animate={{
           scale: isHovered ? 1.05 : 1,
         }}
         transition={{ duration: 0.3 }}
       >
-        {/* Enhanced glow effect */}
         <motion.div
-          className="absolute left-1/2 -translate-x-1/2 w-8 h-full rounded-full blur-xl" // Centered using transform
+          className="absolute left-1/2 -translate-x-1/2 w-8 h-full rounded-full blur-xl"
           style={{
             background: "linear-gradient(to bottom, #4f46e5, #7c3aed, #2563eb)",
             opacity: glowOpacity,
           }}
         />
-
-        {/* Centered background track */}
         <div className="w-0.5 h-full rounded-full bg-white/10 backdrop-blur-md" />
-
-        {/* Centered progress bar */}
         <motion.div
           className="absolute bottom-0 -translate-x-1/2 rounded-full bg-gradient-to-t from-indigo-600 via-purple-500 to-blue-500"
           style={{
@@ -74,12 +76,10 @@ const ScrollProgressBar = () => {
             filter: "drop-shadow(0 0 8px rgba(124, 58, 237, 0.5))",
           }}
         />
-
-        {/* Centered indicator dot */}
         <motion.div
-          className="absolute  -translate-x-1/2 w-6 h-6"
+          className="absolute -translate-x-1/2 w-6 h-6"
           style={{
-            top: useTransform(smoothProgress, [0, 1], ["0%", "100%"]),
+            top: indicatorPosition,
             y: "-50%",
           }}
         >
@@ -100,7 +100,6 @@ const ScrollProgressBar = () => {
               }}
             />
           ))}
-
           <motion.div
             className="absolute left-1/2 top-1/2 w-3 h-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-cyan-400 to-purple-500"
             animate={{
@@ -117,8 +116,6 @@ const ScrollProgressBar = () => {
             }}
           />
         </motion.div>
-
-        {/* Enhanced side markers */}
         <div className="absolute -left-4 h-full flex flex-col justify-between py-2">
           {[...Array(6)].map((_, i) => (
             <motion.div
@@ -127,15 +124,11 @@ const ScrollProgressBar = () => {
               initial={{ opacity: 0.3 }}
               whileHover={{ opacity: 1 }}
             >
-              <div className="w-2 h-0.5 bg-purple-300/50 rounded-full" />{" "}
-              {/* Increased opacity */}
-              <div className="w-1 h-0.5 bg-purple-300/30 rounded-full" />{" "}
-              {/* Increased opacity */}
+              <div className="w-2 h-0.5 bg-purple-300/50 rounded-full" />
+              <div className="w-1 h-0.5 bg-purple-300/30 rounded-full" />
             </motion.div>
           ))}
         </div>
-
-        {/* Enhanced ripple effect */}
         {isHovered && (
           <motion.div
             className="absolute left-1/2 -translate-x-1/2 w-8 h-8 rounded-full"
@@ -147,8 +140,8 @@ const ScrollProgressBar = () => {
             }}
             style={{
               background:
-                "radial-gradient(circle, rgba(124, 58, 237, 0.4) 0%, transparent 70%)", // Increased opacity
-              top: useTransform(smoothProgress, [0, 1], ["0%", "100%"]),
+                "radial-gradient(circle, rgba(124, 58, 237, 0.4) 0%, transparent 70%)",
+              top: indicatorPosition,
               y: "-50%",
             }}
           />

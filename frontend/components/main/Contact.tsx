@@ -12,7 +12,7 @@ import {
   faFileText,
 } from "@fortawesome/free-solid-svg-icons";
 import SectionTitle from "../sub/SectionTitle";
-import { ContactIcon, Send, SendHorizonal } from "lucide-react";
+import { ContactIcon, SendHorizonal } from "lucide-react";
 
 const Contact = () => {
   const fullNameRef = useRef<HTMLInputElement>(null);

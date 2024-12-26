@@ -5,7 +5,6 @@ type MovingBorderButtonProps = {
   children: ReactNode;
   duration?: number;
   className?: string;
-  [key: string]: any;
 };
 
 const MovingBorderButton = ({
