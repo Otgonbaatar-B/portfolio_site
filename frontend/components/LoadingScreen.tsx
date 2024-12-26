@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { motion, useAnimation, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface Bubble {
   id: string;
@@ -14,7 +14,6 @@ const LoadingScreen = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [progress, setProgress] = useState(0);
   const [bubbles, setBubbles] = useState<Bubble[]>([]);
-  const controls = useAnimation();
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
