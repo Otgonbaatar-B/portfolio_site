@@ -1,92 +1,197 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { motion, useAnimation, AnimatePresence } from "framer-motion";
+
+interface Bubble {
+  id: string;
+  x: number;
+  y: number;
+  scale: number;
+  opacity: number;
+  duration: number;
+}
 
 const LoadingScreen = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [progress, setProgress] = useState(0);
+  const [bubbles, setBubbles] = useState<Bubble[]>([]);
+  const controls = useAnimation();
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const hasVisited = sessionStorage.getItem("hasVisited");
+    const hasVisited = localStorage.getItem("hasVisited");
     setIsLoading(true);
 
+    // Create floating bubbles effect with unique IDs
+    const createBubbles = () => {
+      const newBubbles = [...Array(15)].map((_, index) => ({
+        id: `bubble-${Date.now()}-${index}`, // Unique ID for each bubble
+        x: Math.random() * 100 - 50,
+        y: Math.random() * 100 - 50,
+        scale: Math.random() * 0.5 + 0.5,
+        opacity: Math.random() * 0.5 + 0.3,
+        duration: Math.random() * 2 + 2,
+      }));
+      setBubbles(newBubbles);
+    };
+
+    createBubbles();
+    const bubbleInterval = setInterval(createBubbles, 3000);
+
+    // Animate progress
     const progressInterval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(progressInterval);
           return 100;
         }
-        return prev + 1;
+        return prev + 0.5;
       });
-    }, 25);
+    }, 20);
 
+    // Cleanup
     const timer = setTimeout(() => {
       setIsLoading(false);
       if (!hasVisited) {
         localStorage.setItem("hasVisited", "true");
       }
-    }, 2800);
+    }, 3500);
 
     return () => {
       clearTimeout(timer);
       clearInterval(progressInterval);
+      clearInterval(bubbleInterval);
     };
   }, []);
 
   if (!isLoading) return null;
 
   return (
-    <div className="fixed inset-0 bg-gradient-to-br from-slate-900 via-gray-900 to-black flex flex-col items-center justify-center min-h-screen w-full z-50 px-4">
-      {/* Floating particles background */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(20)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-2 h-2 bg-blue-400/20 rounded-full"
+    <AnimatePresence mode="wait">
+      <motion.div
+        key="loading-screen"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="fixed inset-0 bg-black flex items-center justify-center z-50"
+        ref={containerRef}
+      >
+        {/* Dynamic background patterns */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(55,65,81,0.5)_0%,rgba(17,24,39,0.8)_100%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(59,130,246,0.1),rgba(147,51,234,0.1))]" />
+        </div>
+
+        {/* Animated bubbles with unique keys */}
+        {bubbles.map((bubble) => (
+          <motion.div
+            key={bubble.id}
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{
+              scale: bubble.scale,
+              opacity: bubble.opacity,
+              x: [bubble.x, -bubble.x, bubble.x],
+              y: [bubble.y, -bubble.y, bubble.y],
+            }}
+            transition={{
+              duration: bubble.duration,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute w-4 h-4 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 blur-sm"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animation: `float ${3 + Math.random() * 2}s linear infinite`,
-              animationDelay: `${Math.random() * 3}s`,
+              left: `${50 + bubble.x}%`,
+              top: `${50 + bubble.y}%`,
             }}
           />
         ))}
-      </div>
 
-      {/* Main content container - Added max-width and centering */}
-      <div className="relative w-full max-w-md mx-auto flex flex-col items-center justify-center">
-        {/* Main loading container */}
-        <div className="relative group">
-          {/* Outer rotating rings - Adjusted for mobile */}
-          <div className="absolute -inset-8 sm:-inset-10 border-4 border-blue-500/20 rounded-full animate-[spin_4s_linear_infinite] blur-sm" />
-          <div className="absolute -inset-6 sm:-inset-8 border-4 border-cyan-500/20 rounded-full animate-[spin_3s_linear_infinite_reverse] blur-sm" />
-          <div className="absolute -inset-4 sm:-inset-6 border-4 border-teal-500/20 rounded-full animate-[spin_2s_linear_infinite] blur-sm" />
+        {/* Central loading element */}
+        <motion.div
+          key="loading-content"
+          className="relative z-10 flex flex-col items-center"
+          initial={{ scale: 0.9, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          {/* Rotating rings */}
+          <div className="relative w-32 h-32 mb-8">
+            {[0, 1, 2].map((index) => (
+              <motion.div
+                key={`ring-${index}`}
+                className={`absolute ${
+                  index === 0 ? "inset-0" : index === 1 ? "inset-2" : "inset-4"
+                } 
+                           rounded-full border-2 border-transparent 
+                           ${
+                             index === 0
+                               ? "border-t-blue-500 border-r-purple-500"
+                               : index === 1
+                               ? "border-t-purple-500 border-r-pink-500"
+                               : "border-t-pink-500 border-r-blue-500"
+                           }`}
+                animate={{ rotate: index % 2 === 0 ? 360 : -360 }}
+                transition={{
+                  duration: 3 - index * 0.5,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              />
+            ))}
 
-          {/* Main circle with progress - Adjusted size for mobile */}
-          <div className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full bg-gradient-to-br from-blue-500 via-cyan-500 to-teal-500 p-1 animate-pulse shadow-lg shadow-cyan-500/20 group-hover:shadow-cyan-500/40 transition-shadow duration-300">
-            <div className="w-full h-full rounded-full bg-gray-900 flex items-center justify-center">
-              <div className="text-3xl sm:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400">
-                {progress}%
-              </div>
+            {/* Central progress text */}
+            <div className="absolute inset-0 flex items-center justify-center">
+              <motion.span
+                key="progress-text"
+                className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400"
+                animate={{ opacity: [0.5, 1, 0.5] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                {Math.round(progress)}%
+              </motion.span>
             </div>
           </div>
-        </div>
 
-        {/* Title with animated gradient - Adjusted spacing and size for mobile */}
-        <div className="mt-12 sm:mt-16 space-y-2 text-center w-full">
-          <h1 className="text-4xl sm:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-teal-400 animate-pulse">
-            Portfolio
-          </h1>
-          <p className="text-sm text-gray-400">Loading your experience...</p>
-        </div>
-      </div>
+          {/* Progress bar */}
+          <div className="w-64 h-1 bg-gray-800 rounded-full overflow-hidden relative">
+            <motion.div
+              key="progress-bar"
+              className="h-full rounded-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
+              style={{ width: `${progress}%` }}
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              transition={{ type: "spring", stiffness: 50, damping: 20 }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer" />
+            </motion.div>
+          </div>
 
-      {/* Bottom progress bar */}
-      <div className="absolute bottom-0 left-0 w-full h-1 bg-gray-800">
-        <div
-          className="h-full bg-gradient-to-r from-blue-500 via-cyan-500 to-teal-500 transition-all duration-300 ease-out"
-          style={{ width: `${progress}%` }}
-        />
-      </div>
-    </div>
+          {/* Loading text */}
+          <motion.div
+            key="loading-text"
+            className="mt-4 text-sm text-gray-400"
+            animate={{ opacity: [0.5, 1, 0.5] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+          >
+            Loading...
+          </motion.div>
+        </motion.div>
+      </motion.div>
+
+      {/* Custom animations */}
+      <style jsx global>{`
+        @keyframes shimmer {
+          0% {
+            transform: translateX(-100%);
+          }
+          100% {
+            transform: translateX(100%);
+          }
+        }
+        .animate-shimmer {
+          animation: shimmer 2s infinite;
+        }
+      `}</style>
+    </AnimatePresence>
   );
 };
 
