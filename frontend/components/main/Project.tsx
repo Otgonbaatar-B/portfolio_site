@@ -57,7 +57,7 @@ const ProjectsSection = () => {
   ];
 
   return (
-    <section className="min-h-screen w-full bg-transparent py-20 relative overflow-hidden">
+    <section className="h-auto w-full bg-transparent relative overflow-hidden">
       {/* Improved background gradient */}
       <div className="absolute inset-0 bg-grid-white/[0.02] -z-10">
         <div className="absolute inset-0 bg-gradient-to-tr from-neutral-950/50 via-neutral-950/25 to-neutral-950/50 backdrop-blur-3xl" />
