@@ -65,7 +65,7 @@ const LoadingScreen = () => {
   if (!isLoading) return null;
 
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence mode="sync">
       <motion.div
         key="loading-screen"
         initial={{ opacity: 0 }}

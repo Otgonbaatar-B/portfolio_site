@@ -1,57 +1,16 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Code2, Code2Icon, Database, Wrench } from "lucide-react";
-import SkillCard from "./SkillCard";
+import { Code2Icon } from "lucide-react";
 import SectionTitle from "../sub/SectionTitle";
+import SkillCard from "../sub/SkillCard";
+import { skillsData } from "../constants";
 
 const Skills = () => {
-  const skillsData = [
-    {
-      title: "Programming Languages & Deploymend Tools",
-      icon: Code2,
-      items: [
-        "JavaScript",
-        "TypeScript",
-        "C#",
-        "Git",
-        "Render",
-        "Vercel",
-        "Cloudflare",
-      ],
-    },
-    {
-      title: "Frameworks & Technologies",
-      icon: Wrench,
-      items: [
-        "React",
-        "Next.js",
-        "Tailwind CSS",
-        "Daisy UI",
-        "Node.js",
-        "Material UI",
-        ".NET",
-        "DevExpress",
-      ],
-    },
-    {
-      title: "Databases & APIs",
-      icon: Database,
-      items: [
-        "MongoDB",
-        "PostgreSQL",
-        "MySQL",
-        "Express JS",
-        "GraphQL",
-        "REST",
-        "Firebase",
-        "Supabase",
-        "AWS",
-      ],
-    },
-  ];
-
   return (
-    <div className="flex flex-col m-auto w-full justify-center items-center gap-8">
+    <div
+      id="skills"
+      className="flex flex-col m-auto w-full justify-center items-center gap-8"
+    >
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}

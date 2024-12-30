@@ -1,9 +1,9 @@
 "use client";
 import localFont from "next/font/local";
 import "./globals.css";
-import StarsCanvas from "@/components/main/StarBackground";
 import Navbar from "@/components/main/Navbar";
 import LoadingScreen from "@/components/LoadingScreen";
+import StarsCanvas from "@/components/sub/StarBackground";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",

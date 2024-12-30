@@ -2,61 +2,20 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowDown, Eye, X } from "lucide-react";
+import { containerVariants, itemVariants, modalVariants } from "../constants";
 
 const HeroContent = () => {
   const [showPreview, setShowPreview] = useState(false);
-  const pdfPath = "/Otgonbaatar_Resume.pdf"; // Updated PDF path
-  console.log(pdfPath);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delayChildren: 0.3,
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-      },
-    },
-  };
-
-  const modalVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        duration: 0.3,
-      },
-    },
-    exit: {
-      opacity: 0,
-      scale: 0.8,
-      transition: {
-        duration: 0.2,
-      },
-    },
-  };
+  const pdfPath = "/Otgonbaatar_Resume.pdf";
 
   return (
-    <div className="w-full relative h-auto">
+    <div id="about-me" className="w-full relative h-auto">
       <motion.div
         className="relative z-10 container mx-auto px-6 pt-32 pb-20 flex flex-col lg:flex-row items-center justify-between gap-12"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        {/* Left content */}
         <motion.div
           className="flex-1 text-center lg:text-left"
           variants={itemVariants}
@@ -67,15 +26,6 @@ const HeroContent = () => {
           >
             <span className="text-purple-400 text-sm">Available for Work</span>
           </motion.div>
-          <motion.h1
-            variants={itemVariants}
-            className="text-4xl md:text-6xl font-bold mb-6"
-          >
-            <span className="text-white">Turning Ideas into </span>
-            <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-              Digital Reality
-            </span>
-          </motion.h1>
           <motion.p
             variants={itemVariants}
             className="text-gray-400 text-lg mb-8 max-w-xl"
@@ -88,13 +38,6 @@ const HeroContent = () => {
             variants={itemVariants}
             className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
           >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg text-white font-medium hover:shadow-lg hover:shadow-purple-500/25 transition-all"
-            >
-              View Projects
-            </motion.button>
             <motion.div className="relative">
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -114,29 +57,36 @@ const HeroContent = () => {
             </motion.div>
           </motion.div>
         </motion.div>
-        {/* Right content - 3D animated element */}
-        <motion.div className="flex-1 relative" variants={itemVariants}>
+        <motion.div
+          className="w-[300px] h-[300px] relative"
+          variants={itemVariants}
+        >
           <div className="relative w-full aspect-square max-w-lg mx-auto">
             <motion.div
               animate={{
-                rotateY: [0, 360],
-                rotateX: [0, 360],
+                rotateY: [0, 0],
+                rotateX: [0, 0],
               }}
               transition={{
                 duration: 20,
                 repeat: Infinity,
                 ease: "linear",
               }}
-              className="w-full h-full rounded-full bg-gradient-to-br from-purple-500/20 to-blue-500/20 backdrop-blur-3xl border border-white/10"
+              style={{
+                backgroundImage: `url("./image.png")`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+              className="w-full h-full rounded-full  backdrop-blur-sm border border-white/10"
             />
-            <div className="absolute inset-0 backdrop-blur-sm rounded-full border border-white/10" />
+            <div className="absolute inset-0 rounded-full border-4 border-[#2A0E61]/50" />
           </div>
         </motion.div>
       </motion.div>
-      {/* PDF Preview Modal */}
-      <AnimatePresence>
+      <AnimatePresence mode="sync">
         {showPreview && (
           <motion.div
+            key={"child3"}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -154,7 +104,7 @@ const HeroContent = () => {
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                className="absolute -top-4 -right-4 bg-red-500 rounded-full p-2 text-white hover:bg-red-600 transition-colors"
+                className="absolute top-3 right-3 bg-red-500 rounded-full p-2 text-white hover:bg-red-600 transition-colors"
                 onClick={() => setShowPreview(false)}
               >
                 <X className="w-4 h-4" />
@@ -166,27 +116,15 @@ const HeroContent = () => {
                   title="CV Preview"
                 />
               </div>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="absolute bottom-8 right-8 px-6 py-2 bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg text-white font-medium hover:shadow-lg hover:shadow-purple-500/25 transition-all flex items-center gap-2"
-                onClick={() => {
-                  window.open(pdfPath, "_blank");
-                }}
-              >
-                <ArrowDown className="w-4 h-4" />
-                Download
-              </motion.button>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
-      {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        className="absolute bottom-4 left-1/2 transform -translate-x-1/2"
       >
         <div className="w-6 h-10 rounded-full border-2 border-white/20 flex items-start justify-center p-2">
           <motion.div

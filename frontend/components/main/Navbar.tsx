@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Github,
-  Facebook,
-  Instagram,
-  Linkedin,
-  Menu,
-  X,
-  Share2,
-} from "lucide-react";
+import { Menu, X, Share2 } from "lucide-react";
+import { navItems, socialIconVariants, socialLinks } from "../constants";
 
 const Navbar = () => {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
@@ -49,59 +42,6 @@ const Navbar = () => {
     }
   }, [isMobileMenuOpen]);
 
-  const navItems = [
-    { id: "about-me", label: "About me" },
-    { id: "skills", label: "Skills" },
-    { id: "projects", label: "Projects" },
-  ];
-
-  const socialLinks = [
-    {
-      Icon: Facebook,
-      color: "#1877F2",
-      href: "https://www.facebook.com/profile.php?id=61557231467926",
-      hoverBg: "hover:bg-[#1877F2]",
-    },
-    {
-      Icon: Instagram,
-      color: "#E4405F",
-      href: "https://www.instagram.com/obikaze/",
-      hoverBg:
-        "hover:bg-gradient-to-r hover:from-[#833AB4] hover:via-[#FD1D1D] hover:to-[#F77737]",
-    },
-    {
-      Icon: Linkedin,
-      color: "#0A66C2",
-      href: "https://www.linkedin.com/in/otgonbaatar-battumur-bab7032b9?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
-      hoverBg: "hover:bg-[#0A66C2]",
-    },
-    {
-      Icon: Github,
-      color: "#333",
-      href: "https://github.com/Otgonbaatar-B",
-      hoverBg: "hover:bg-[#333]",
-    },
-  ];
-
-  const socialIconVariants = {
-    hidden: (i: number) => ({
-      opacity: 0,
-      x: -20,
-      transition: {
-        duration: 0.2,
-        delay: (socialLinks.length - i) * 0.1,
-      },
-    }),
-    visible: (i: number) => ({
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.2,
-        delay: i * 0.1,
-      },
-    }),
-  };
-
   return (
     <>
       <motion.nav
@@ -125,6 +65,8 @@ const Navbar = () => {
                     alt="logo"
                     fill
                     className="object-cover rounded-full"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    priority={true}
                   />
                 </div>
                 <span className="font-bold hidden md:block text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-cyan-500">
@@ -179,9 +121,10 @@ const Navbar = () => {
                     }`}
                   />
                 </motion.button>
-                <AnimatePresence>
+                <AnimatePresence mode="sync">
                   {isSocialExpanded && (
                     <motion.div
+                      key={"child2"}
                       initial={{ opacity: 0, width: 0 }}
                       animate={{ opacity: 1, width: "auto" }}
                       exit={{ opacity: 0, width: 0 }}
@@ -237,7 +180,7 @@ const Navbar = () => {
         </div>
       </motion.nav>
 
-      <AnimatePresence>
+      <AnimatePresence mode="sync">
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0 }}
