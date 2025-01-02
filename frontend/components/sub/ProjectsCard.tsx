@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import { Project } from "../main/Project";
+import Image from "next/image";
 
 type ProjectCardProps = {
   project: Project;
@@ -28,12 +29,24 @@ const ProjectCard = ({
       className="relative group"
     >
       <div className="relative h-[280px] rounded-xl overflow-hidden">
-        <img
+        {/* <img
           src={project.thumbnail}
           alt={project.title}
           className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-        />
-
+        /> */}
+        <div className="relative h-[320px] w-full">
+          <Image
+            src={project.thumbnail}
+            alt={project.title}
+            fill
+            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            priority={index < 2}
+          />
+          <div
+            className={`absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-90 transition-all duration-300`}
+          />
+        </div>
         {/* Overlay visible on both hover and mobile */}
         <div
           className={`
