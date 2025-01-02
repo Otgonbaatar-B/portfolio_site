@@ -35,31 +35,24 @@ import { GrMysql, GrGraphQl } from "react-icons/gr";
 export const workExperience = [
   {
     id: 1,
-    title: "Frontend Engineer Intern",
-    desc: "Assisted in the development of a web-based platform using React.js, enhancing interactivity.",
+    title: "Desktop App Developer - Smart Logic",
+    desc: "Developed desktop applications using C#, SQL, and .NET Framework.",
     className: "md:col-span-2",
     thumbnail: "/exp1.svg",
   },
   {
     id: 2,
-    title: "Mobile App Dev - JSM Tech",
-    desc: "Designed and developed mobile app for both iOS & Android platforms using React Native.",
+    title: "Mobile App Developer - Smart Logic",
+    desc: "Built mobile applications for iOS and Android platforms using Xamarin Framework.",
     className: "md:col-span-2",
     thumbnail: "/exp2.svg",
   },
   {
     id: 3,
-    title: "Freelance App Dev Project",
-    desc: "Led the dev of a mobile app for a client, from initial concept to deployment on app stores.",
+    title: "Web App Developer - Pinecone Academy",
+    desc: "Developed web applications using HTML, CSS, JavaScript, React, Next.js, and Node.js.",
     className: "md:col-span-2",
     thumbnail: "/exp3.svg",
-  },
-  {
-    id: 4,
-    title: "Lead Frontend Developer",
-    desc: "Developed and maintained user-facing features using modern frontend technologies.",
-    className: "md:col-span-2",
-    thumbnail: "/exp4.svg",
   },
 ];
 
