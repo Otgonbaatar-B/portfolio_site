@@ -3,10 +3,10 @@ import React from "react";
 import Hero from "@/components/main/Hero";
 import Experience from "@/components/main/Experience";
 import Skills from "@/components/main/Skills";
-import FloatingChatBot from "@/components/ChatBot";
 import Contact from "@/components/main/Contact";
 import ProjectsSection from "@/components/main/Project";
 import ScrollProgressBar from "@/components/sub/ScrollIndicator";
+import FloatingChatBot from "@/components/main/ChatBot";
 
 export default function Home() {
   return (

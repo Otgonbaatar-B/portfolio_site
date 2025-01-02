@@ -50,7 +50,7 @@ export const workExperience = [
   {
     id: 3,
     title: "Web App Developer - Pinecone Academy",
-    desc: "Developed web applications using HTML, CSS, JavaScript, React, Next.js, and Node.js.",
+    desc: "Developed web applications using HTML, CSS, JavaScript, Typescript, React, Next.js, and Node.js.",
     className: "md:col-span-2",
     thumbnail: "/exp3.svg",
   },
