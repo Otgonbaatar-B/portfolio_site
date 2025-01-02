@@ -14,7 +14,6 @@ type ProjectCardProps = {
 const ProjectCard = ({
   project,
   index,
-  isHovered,
   onHover,
   onHoverEnd,
 }: ProjectCardProps) => {
