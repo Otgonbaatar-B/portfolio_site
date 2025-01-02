@@ -6,7 +6,7 @@ import { containerVariants, itemVariants, modalVariants } from "../constants";
 
 const HeroContent = () => {
   const [showPreview, setShowPreview] = useState(false);
-  const pdfPath = "/Otgonbaatar_Resume.pdf";
+  const pdfPath = "/Otgonbaatar_CV.pdf";
 
   return (
     <div id="about-me" className="w-full relative h-auto">

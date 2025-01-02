@@ -1,7 +1,15 @@
-import { Project } from "../main/Project";
-import Image from "next/image";
-import { ExternalLink } from "lucide-react";
+import React from "react";
 import { motion } from "framer-motion";
+import { ExternalLink } from "lucide-react";
+import { Project } from "../main/Project";
+
+type ProjectCardProps = {
+  project: Project;
+  index: number;
+  isHovered: boolean;
+  onHover: () => void;
+  onHoverEnd: () => void;
+};
 
 const ProjectCard = ({
   project,
@@ -9,95 +17,62 @@ const ProjectCard = ({
   isHovered,
   onHover,
   onHoverEnd,
-}: {
-  project: Project;
-  index: number;
-  isHovered: boolean;
-  onHover: () => void;
-  onHoverEnd: () => void;
-}) => {
+}: ProjectCardProps) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -50 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      exit={{ opacity: 0, y: 20 }}
+      transition={{ duration: 0.3, delay: index * 0.1 }}
       onHoverStart={onHover}
       onHoverEnd={onHoverEnd}
       className="relative group"
     >
-      <motion.div
-        className="relative rounded-2xl overflow-hidden shadow-2xl bg-neutral-900"
-        whileHover={{ scale: 1.02 }}
-        transition={{ duration: 0.3 }}
-      >
-        <div className="relative h-[320px] w-full">
-          <Image
-            src={project.thumbnail}
-            alt={project.title}
-            fill
-            className="object-cover transition-transform duration-300 group-hover:scale-110"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            priority={index < 2}
-          />
-          <div
-            className={`absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent opacity-60 group-hover:opacity-90 transition-all duration-300`}
-          />
-        </div>
+      <div className="relative h-[280px] rounded-xl overflow-hidden">
+        <img
+          src={project.thumbnail}
+          alt={project.title}
+          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+        />
 
-        <div className="absolute inset-0 p-8 flex flex-col justify-end">
-          <div className="space-y-4">
-            <motion.h3
-              className="text-2xl font-bold text-white"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-            >
+        {/* Overlay visible on both hover and mobile */}
+        <div
+          className={`
+          absolute inset-0 
+          bg-gradient-to-b from-transparent to-black/90
+          opacity-100 md:opacity-0 md:group-hover:opacity-100 
+          transition-opacity duration-300
+        `}
+        >
+          <div className="absolute bottom-0 w-full p-4">
+            <h3 className="text-xl font-bold text-white mb-2">
               {project.title}
-            </motion.h3>
+            </h3>
+            <p className="text-gray-200 text-sm mb-3">{project.desc}</p>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 20 }}
-              transition={{ duration: 0.3 }}
-              className="text-gray-200 text-sm line-clamp-3"
-            >
-              {project.desc}
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 20 }}
-              transition={{ duration: 0.3 }}
-              className="flex flex-wrap gap-2"
-            >
-              {project.tech.map((tech, idx) => (
+            <div className="flex flex-wrap gap-2 mb-4">
+              {project.tech.map((tech, index) => (
                 <span
-                  key={idx}
-                  className="px-3 py-1 text-xs rounded-full bg-white/10 text-white backdrop-blur-sm border border-white/20"
+                  key={index}
+                  className="px-2 py-1 text-xs rounded-full bg-white/10 text-white"
                 >
                   {tech}
                 </span>
               ))}
-            </motion.div>
+            </div>
 
-            <motion.a
+            <a
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: isHovered ? 1 : 0, y: isHovered ? 0 : 20 }}
-              transition={{ duration: 0.3 }}
-              className="inline-flex items-center gap-2 bg-white text-black font-medium py-2 px-4 rounded-lg hover:bg-opacity-90 transition-all"
+              className="inline-flex items-center gap-2 text-white bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg transition-colors"
             >
-              View Project
+              <span>View Project</span>
               <ExternalLink className="w-4 h-4" />
-            </motion.a>
+            </a>
           </div>
         </div>
-      </motion.div>
-
-      <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl blur opacity-0 group-hover:opacity-30 transition duration-300 -z-10" />
+      </div>
     </motion.div>
   );
 };

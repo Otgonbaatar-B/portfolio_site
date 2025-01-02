@@ -43,7 +43,7 @@ const ProjectsSection = () => {
             transition={{ duration: 0.8 }}
             className="inline-block"
           >
-            <SectionTitle title="Project" icon={<Rocket />} />
+            <SectionTitle title="Projects" icon={<Rocket />} />
           </motion.div>
         </div>
 
