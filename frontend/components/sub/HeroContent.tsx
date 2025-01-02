@@ -22,7 +22,7 @@ const HeroContent = () => {
         >
           <motion.div
             variants={itemVariants}
-            className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/10 to-blue-500/10 border border-purple-500/20 mb-8"
+            className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/10 to-blue-500/10 border border-purple-500/20 mb-8 hover:from-purple-500/20 hover:to-blue-500/20 transition-colors"
           >
             <span className="text-purple-400 text-sm">Available for Work</span>
           </motion.div>
@@ -38,55 +38,110 @@ const HeroContent = () => {
             variants={itemVariants}
             className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
           >
-            <motion.div className="relative">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setShowPreview(true)}
-                className="group px-8 py-3 bg-white/10 rounded-lg text-white font-medium hover:bg-white/20 transition-all flex items-center justify-center gap-2 relative"
-              >
-                <ArrowDown className="w-5 h-5" />
-                Download CV
-                <Eye className="w-4 h-4 animate-pulse flex items-center justify-center" />
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity"
-                ></motion.div>
-              </motion.button>
-            </motion.div>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => setShowPreview(true)}
+              className="group px-8 py-3 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-lg text-white font-medium hover:from-purple-500/30 hover:to-blue-500/30 transition-all flex items-center justify-center gap-2 relative backdrop-blur-sm border border-white/10"
+            >
+              <ArrowDown className="w-5 h-5" />
+              Download CV
+              <Eye className="w-4 h-4 animate-pulse" />
+            </motion.button>
           </motion.div>
         </motion.div>
+
         <motion.div
-          className="w-[300px] h-[300px] relative"
+          className="w-[250px] h-[250px] relative p-5"
           variants={itemVariants}
         >
           <div className="relative w-full aspect-square max-w-lg mx-auto">
+            {/* Animated Background Circles */}
             <motion.div
+              className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500/20 to-blue-500/20 blur-2xl"
               animate={{
-                rotateY: [0, 0],
-                rotateX: [0, 0],
+                scale: [1, 1.2, 1],
+                rotate: [0, 180, 360],
               }}
               transition={{
-                duration: 20,
+                duration: 8,
                 repeat: Infinity,
                 ease: "linear",
               }}
-              style={{
-                backgroundImage: `url("./image.png")`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
-              className="w-full h-full rounded-full  backdrop-blur-sm border border-white/10"
             />
-            <div className="absolute inset-0 rounded-full border-4 border-[#2A0E61]/50" />
+
+            {/* Main Image Container */}
+            <motion.div
+              className="relative w-full h-full rounded-full overflow-hidden backdrop-blur-sm border-2 border-white/10"
+              animate={{
+                y: [0, -10, 0],
+                rotate: [0, 5, 0, -5, 0],
+              }}
+              transition={{
+                y: {
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                },
+                rotate: {
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                },
+              }}
+            >
+              <motion.div
+                className="w-full h-full"
+                style={{
+                  backgroundImage: `url("./image.png")`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+                animate={{
+                  scale: [1, 1.05, 1],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+            </motion.div>
+
+            {/* Decorative Elements */}
+            <motion.div
+              className="absolute -inset-4 rounded-full border border-purple-500/20"
+              animate={{
+                rotate: [0, 360],
+                scale: [1, 1.1, 1],
+              }}
+              transition={{
+                duration: 10,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            />
+
+            <motion.div
+              className="absolute -inset-8 rounded-full border border-blue-500/20"
+              animate={{
+                rotate: [360, 0],
+                scale: [1, 1.15, 1],
+              }}
+              transition={{
+                duration: 15,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            />
           </div>
         </motion.div>
       </motion.div>
+
       <AnimatePresence mode="sync">
         {showPreview && (
           <motion.div
-            key={"child3"}
+            key="modal"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -104,7 +159,7 @@ const HeroContent = () => {
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
-                className="absolute top-3 right-3 bg-red-500 rounded-full p-2 text-white hover:bg-red-600 transition-colors"
+                className="absolute top-3 right-3 bg-red-500/80 backdrop-blur-sm rounded-full p-2 text-white hover:bg-red-600 transition-colors"
                 onClick={() => setShowPreview(false)}
               >
                 <X className="w-4 h-4" />
@@ -120,6 +175,7 @@ const HeroContent = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}

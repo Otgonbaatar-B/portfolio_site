@@ -7,6 +7,7 @@ import Contact from "@/components/main/Contact";
 import ProjectsSection from "@/components/main/Project";
 import ScrollProgressBar from "@/components/sub/ScrollIndicator";
 import FloatingChatBot from "@/components/main/ChatBot";
+import Footer from "@/components/main/Footer";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
           <Skills />
           <ProjectsSection />
           <Contact />
+          <Footer />
         </div>
       </main>
       <FloatingChatBot />
