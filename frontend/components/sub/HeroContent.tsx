@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowDown, Eye, X } from "lucide-react";
+import { ArrowDown, ArrowDownIcon, Eye, X } from "lucide-react";
 import { containerVariants, itemVariants, modalVariants } from "../constants";
 
 const HeroContent = () => {
@@ -168,6 +168,17 @@ const HeroContent = () => {
                   title="CV Preview"
                 />
               </div>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="absolute bottom-3 right-3 px-6 py-2 bg-gradient-to-r from-purple-400 to-blue-400 rounded-lg text-white font-medium hover:shadow-lg hover:shadow-purple-500/25 transition-all flex items-center gap-2"
+                onClick={() => {
+                  window.open(pdfPath, "_blank");
+                }}
+              >
+                <ArrowDownIcon className="w-4 h-4" />
+                Download
+              </motion.button>
             </motion.div>
           </motion.div>
         )}

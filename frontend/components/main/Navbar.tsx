@@ -19,7 +19,13 @@ const Navbar = () => {
           !isMobileMenuOpen
       );
       setPrevScrollPos(currentScrollPos);
-      const sections = ["about-me", "skills", "projects"];
+      const sections = [
+        "about-me",
+        "experience",
+        "skills",
+        "projects",
+        "contact",
+      ];
       const current = sections.find((section) => {
         const element = document.getElementById(section);
         if (element) {

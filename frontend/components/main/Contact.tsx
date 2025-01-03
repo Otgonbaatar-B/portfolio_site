@@ -147,14 +147,12 @@ const Contact = () => {
 
   return (
     <motion.div
+      id="contact"
       initial="hidden"
       animate="visible"
-      className="md:flex items-center justify-center w-full z-[20] flex-row gap-5 md:gap-0"
+      className="md:flex items-center justify-center w-full z-[20] flex-row gap-5 md:gap-0 mb-20"
     >
-      <section
-        id="contact"
-        className="flex flex-col items-center justify-center py-12 from-gray-900 to-black"
-      >
+      <section className="flex flex-col items-center justify-center py-12 from-gray-900 to-black">
         <motion.div
           initial="hidden"
           animate="visible"
