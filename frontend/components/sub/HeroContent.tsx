@@ -9,7 +9,7 @@ const HeroContent = () => {
   const pdfPath = "/Otgonbaatar_CV.pdf";
 
   return (
-    <div id="about-me" className="w-full relative h-auto">
+    <div id="about-me" className="w-full relative h-auto mt-20">
       <motion.div
         className="relative z-10 container mx-auto px-6 pt-32 pb-20 flex flex-col lg:flex-row items-center justify-between gap-12"
         variants={containerVariants}
@@ -56,7 +56,6 @@ const HeroContent = () => {
           variants={itemVariants}
         >
           <div className="relative w-full aspect-square max-w-lg mx-auto">
-            {/* Animated Background Circles */}
             <motion.div
               className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500/20 to-blue-500/20 blur-2xl"
               animate={{
@@ -70,7 +69,6 @@ const HeroContent = () => {
               }}
             />
 
-            {/* Main Image Container */}
             <motion.div
               className="relative w-full h-full rounded-full overflow-hidden backdrop-blur-sm border-2 border-white/10"
               animate={{
@@ -108,7 +106,6 @@ const HeroContent = () => {
               />
             </motion.div>
 
-            {/* Decorative Elements */}
             <motion.div
               className="absolute -inset-4 rounded-full border border-purple-500/20"
               animate={{
@@ -180,7 +177,7 @@ const HeroContent = () => {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1 }}
-        className="absolute bottom-4 left-1/2 transform -translate-x-1/2"
+        className="flex items-center justify-center"
       >
         <div className="w-6 h-10 rounded-full border-2 border-white/20 flex items-start justify-center p-2">
           <motion.div

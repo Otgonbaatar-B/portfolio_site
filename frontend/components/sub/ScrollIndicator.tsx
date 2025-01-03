@@ -24,7 +24,6 @@ const ScrollProgressBar = () => {
     ["3px", "4px", "3px"]
   );
 
-  // Always declare useTransform hooks unconditionally
   const indicatorPosition = useTransform(
     smoothProgress,
     [0, 1],
@@ -41,7 +40,7 @@ const ScrollProgressBar = () => {
 
   return (
     <motion.div
-      className="fixed left-4 top-[40%] -translate-y-1/2 z-50"
+      className="fixed left-2.5 top-[40%] -translate-y-1/2 z-50"
       initial={{ opacity: 0, x: -20 }}
       animate={{
         opacity: isVisible ? 1 : 0,
@@ -52,7 +51,7 @@ const ScrollProgressBar = () => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <motion.div
-        className="relative h-52 flex justify-center items-center"
+        className="relative h-32 flex justify-center items-center"
         animate={{
           scale: isHovered ? 1.05 : 1,
         }}
@@ -77,7 +76,7 @@ const ScrollProgressBar = () => {
           }}
         />
         <motion.div
-          className="absolute -translate-x-1/2 w-6 h-6"
+          className="absolute -translate-x-1/2 w-4 h-4"
           style={{
             top: indicatorPosition,
             y: "-50%",
@@ -101,7 +100,7 @@ const ScrollProgressBar = () => {
             />
           ))}
           <motion.div
-            className="absolute left-1/2 top-1/2 w-3 h-3 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-cyan-400 to-purple-500"
+            className="absolute left-1/2 top-1/2 w-2 h-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-cyan-400 to-purple-500"
             animate={{
               boxShadow: [
                 "0 0 10px #22d3ee",
@@ -123,10 +122,7 @@ const ScrollProgressBar = () => {
               className="flex items-center gap-2"
               initial={{ opacity: 0.3 }}
               whileHover={{ opacity: 1 }}
-            >
-              <div className="w-2 h-0.5 bg-purple-300/50 rounded-full" />
-              <div className="w-1 h-0.5 bg-purple-300/30 rounded-full" />
-            </motion.div>
+            ></motion.div>
           ))}
         </div>
         {isHovered && (
