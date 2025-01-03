@@ -97,7 +97,7 @@ const Navbar = () => {
                     {activeSection === item.id && (
                       <motion.div
                         layoutId="navbar-indicator"
-                        className="absolute inset-0 bg-[#2A0E61]/60 rounded-full -z-10"
+                        className="absolute inset-0 bg-[#2A0E61]/60 border border-[#ffffff]/30 rounded-full -z-10"
                         transition={{
                           type: "spring",
                           bounce: 0.2,
